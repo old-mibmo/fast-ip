@@ -1,0 +1,17 @@
+name: Container
+on: [push]
+
+jobs:
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build container
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: fast-ip
+        tags: ${{ github.sha }}
+        dockerfiles: |
+          ./Dockerfile
