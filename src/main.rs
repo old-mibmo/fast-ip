@@ -12,8 +12,8 @@ use hyper::{
 
 const BIND_ADDR: ([u8; 4], u16) = ([0, 0, 0, 0], 3000);
 
-async fn landing_page() -> Result<Response<Body>, Infallible> {
-    let body = include_str!("../res/landing.html");
+async fn about_page() -> Result<Response<Body>, Infallible> {
+    let body = include_str!("../res/about.html");
 
     let resp = Response::builder()
         .status(200)
@@ -65,9 +65,9 @@ async fn ip_json(addr: IpAddr) -> Result<Response<Body>, Infallible> {
 
 async fn mux(req: Request<Body>, addr: IpAddr) -> Result<Response<Body>, Infallible> {
     match req.uri().path() {
-        "/" => landing_page().await,
-        "/ip" | "/plain" => ip_plain(addr).await,
+        "/" | "/ip" | "/plain" => ip_plain(addr).await,
         "/json" => ip_json(addr).await,
+        "/what" => about_page().await,
         _ => error_404(req).await,
     }
 }
