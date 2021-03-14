@@ -65,9 +65,9 @@ async fn ip_json(addr: IpAddr) -> Result<Response<Body>, Infallible> {
 
 async fn mux(req: Request<Body>, addr: IpAddr) -> Result<Response<Body>, Infallible> {
     match req.uri().path() {
-        "/" => landing_page().await,
-        "/ip" | "/plain" => ip_plain(addr).await,
+        "/" | "/ip" | "/plain" => ip_plain(addr).await,
         "/json" => ip_json(addr).await,
+        "/what" => landing_page().await,
         _ => error_404(req).await,
     }
 }
