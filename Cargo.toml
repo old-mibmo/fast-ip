@@ -1,0 +1,13 @@
+[package]
+name = "fast-ip"
+version = "0.1.0"
+authors = ["mib <mib@mib.dev>"]
+edition = "2018"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] } # macros
+hyper = { version = "0.14.4", features = ["server", "tcp", "http1", "http2"] }
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
