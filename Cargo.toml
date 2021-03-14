@@ -7,8 +7,6 @@ edition = "2018"
 [dependencies]
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] } # macros
 hyper = { version = "0.14.4", features = ["server", "tcp", "http1", "http2"] }
-tracing = "0.1"
-tracing-subscriber = { version = "0.2", default-features = false, features = ["registry", "fmt", "json", "env-filter", "smallvec", "parking_lot"] }
 
 [[bin]]
 name = "server"
